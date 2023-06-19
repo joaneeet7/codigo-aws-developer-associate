@@ -1,0 +1,22 @@
+# Añade una sección de Metadata a tu archivo plantilla template.yaml
+Metadata:
+  AWS::ServerlessRepo::Application:
+    Name: my-app
+    Description: Hola Mundo
+    Author: Joan
+    SemanticVersion: 0.0.1
+
+
+# añade un parámetro a la propia plantilla
+Parameters:
+  CustomName:
+    Type: String
+
+# pasa el parámetro como variable de entorno
+Resources:
+  HelloWorldFunction:
+    Properties:
+      Environment:
+        Variables:
+          CUSTOM_NAME: !Ref CustomName
+

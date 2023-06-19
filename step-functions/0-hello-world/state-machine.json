@@ -1,0 +1,33 @@
+{
+  "Comment": "Un ejemplo Hello World del lenguaje de estados de Amazon utilizando estados de paso",
+  "StartAt": "Invocar función lambda",
+  "States": {
+    "Invocar función lambda": {
+      "Type": "Task",
+      "Resource": "<LAMBDA FUNCTION ARN>",
+      "InputPath": "$",
+      "Next": "Estado de elección"
+    },
+    "Estado de elección": {
+      "Type": "Choice",
+      "Choices": [
+        {
+          "Variable": "$",
+          "StringMatches": "*Joan*",
+          "Next": "Es profesor"
+        }
+      ],
+      "Default": "No es profesor"
+    },
+    "Es profesor": {
+      "Type": "Pass",
+      "Result": "Woohoo!",
+      "End": true
+    },
+    "No es profesor": {
+      "Type": "Fail",
+      "Error": "ErrorCode",
+      "Cause": "Joan el profesor no se encontró en la salida de la función Lambda"
+    }
+  }
+}

@@ -1,0 +1,20 @@
+version: 0.2
+
+phases: 
+    install:
+        runtime-versions:
+            nodejs: latest
+        commands:
+            - echo "instalar algo"
+    pre_build:
+        commands: 
+            - echo "estamos en la fase previa a la construcción"
+    build:
+        commands:
+            - echo "estamos en el bloque de construcción"
+            - echo "vamos a ejecutar algunos tests"
+            - grep -Fq "Enhorabuena" index.html
+    post_build:
+        commands:
+            - echo "estamos en la fase de postconstrucción"
+            
